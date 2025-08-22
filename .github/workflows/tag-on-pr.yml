@@ -26,10 +26,13 @@ jobs:
 
       - name: Authenticate with github App
         id: auth
-        uses: tibdex/github-app-token@v2.1.0
+        # https://github.com/tibdex/github-app-token?tab=readme-ov-file - deprecated
+        # https://github.com/actions/create-github-app-token?tab=readme-ov-file
+        uses: actions/create-github-app-token@v2
+        # uses: tibdex/github-app-token@v2.1.0 # deprecated use actions/create-github-app-token
         with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
       - name: Create and push tag
         env:
