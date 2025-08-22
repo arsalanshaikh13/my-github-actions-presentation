@@ -13,6 +13,8 @@ jobs:
   tag:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -42,4 +44,4 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           echo $TAG_NAME
           git tag $TAG_NAME
-          git push https://x-access-token:${{ steps.auth.outputs.token }}@github.com/${{ github.repository }}.git $TAG_NAME
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git $TAG_NAME
